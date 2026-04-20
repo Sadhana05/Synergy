@@ -1,0 +1,301 @@
+/analytics
+  ├── /payment-status
+		{
+  "captured": 4,
+  "failed": 1,
+  "pending": 0,
+  "refunded": 0,
+  "authorized": 0,
+  "total": 5,
+  "generated_at": "2025-12-28T23:28:40.366Z"
+}
+  ├── /payment-methods
+{
+  "count_by_method": {
+    "upi": 4
+  },
+  "revenue_by_method": {
+    "upi": 24
+  },
+  "total_transactions": 4,
+  "generated_at": "2025-12-28T23:29:11.283Z"
+}
+	
+  ├── /revenue
+  │     ├── /hourly
+
+{
+  "hourly_revenue": {
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 0,
+    "16": 0,
+    "17": 0,
+    "18": 0,
+    "19": 0,
+    "20": 0,
+    "21": 0,
+    "22": 0,
+    "23": 0,
+    "00": 0,
+    "01": 0,
+    "02": 0,
+    "03": 20,
+    "04": 4,
+    "05": 0,
+    "06": 0,
+    "07": 0,
+    "08": 0,
+    "09": 0
+  },
+  "hourly_transactions": {
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 0,
+    "16": 0,
+    "17": 0,
+    "18": 0,
+    "19": 0,
+    "20": 0,
+    "21": 0,
+    "22": 0,
+    "23": 0,
+    "00": 0,
+    "01": 0,
+    "02": 0,
+    "03": 1,
+    "04": 3,
+    "05": 0,
+    "06": 0,
+    "07": 0,
+    "08": 0,
+    "09": 0
+  },
+  "peak_hour": "03:00 - 4:00 IST",
+  "peak_revenue": 20,
+  "generated_at": "2025-12-28T23:29:34.128Z"
+}
+
+  │     └── /daily
+		{
+  "period": "7 days",
+  "daily_breakdown": [
+    {
+      "date": "2025-12-23",
+      "revenue": 0,
+      "transactions": 0
+    },
+    {
+      "date": "2025-12-24",
+      "revenue": 0,
+      "transactions": 0
+    },
+    {
+      "date": "2025-12-25",
+      "revenue": 0,
+      "transactions": 0
+    },
+    {
+      "date": "2025-12-26",
+      "revenue": 0,
+      "transactions": 0
+    },
+    {
+      "date": "2025-12-27",
+      "revenue": 0,
+      "transactions": 0
+    },
+    {
+      "date": "2025-12-28",
+      "revenue": 0,
+      "transactions": 0
+    },
+    {
+      "date": "2025-12-29",
+      "revenue": 24,
+      "transactions": 4
+    }
+  ],
+  "total_revenue": 24,
+  "average_daily": 3.43,
+  "currency": "INR",
+  "generated_at": "2025-12-28T23:30:08.183Z"
+}
+
+  ├── /summary
+  │     ├── /weekly
+{
+  "week": "2025-W01",
+  "total_amount": 24,
+  "total_trips": 4,
+  "average_fare": 6,
+  "currency": "INR",
+  "generated_at": "2025-12-28T23:30:38.199Z"
+}
+  │     └── /monthly
+{
+  "month": "December 2025",
+  "total_amount": 24,
+  "total_trips": 4,
+  "average_fare": 6,
+  "days_elapsed": 29,
+  "currency": "INR",
+  "generated_at": "2025-12-28T23:31:55.200Z"
+}
+  ├── /ride
+  │     ├── /average
+{
+  "average_fare": 6,
+  "total_rides": 4,
+  "total_revenue": 24,
+  "currency": "INR",
+  "generated_at": "2025-12-28T23:32:11.952Z"
+}
+  │     └── /extremes
+{
+  "highest": {
+    "amount": 20,
+    "payment_id": "pay_RxBQecNRAmHIeV",
+    "date": "2025-12-28T21:40:55.000Z"
+  },
+  "lowest": {
+    "amount": 1,
+    "payment_id": "pay_RxCnEPgtZ1vxqD",
+    "date": "2025-12-28T23:00:59.000Z"
+  },
+  "currency": "INR",
+  "generated_at": "2025-12-28T23:32:30.175Z"
+}
+  ├── /failures/reasons
+
+{
+  "total_failures": 1,
+  "reasons": {
+    "payment_timed_out": 1
+  },
+  "by_payment_method": {
+    "upi": 1
+  },
+  "recent_failures": [
+    {
+      "id": "pay_RxBT589nq1ma2W",
+      "amount": 1,
+      "method": "upi",
+      "reason": "payment_timed_out",
+      "date": "2025-12-28T21:43:12.000Z"
+    }
+  ],
+  "generated_at": "2025-12-28T23:32:47.635Z"
+}
+  ├── /qr
+{
+  "total_qr_generated": 10,
+  "successful_qr": 3,
+  "active_qr": 7,
+  "expired_qr": 0,
+  "success_rate": "30.00%",
+  "generated_at": "2025-12-28T23:33:01.424Z"
+}
+  ├── /conversion-rate
+{
+  "rides_started": 10,
+  "payments_successful": 4,
+  "conversion_rate": "40.00%",
+  "drop_off": 6,
+  "generated_at": "2025-12-28T23:33:24.459Z"
+}
+  ├── /recent
+
+{
+  "count": 5,
+  "transactions": [
+    {
+      "id": "pay_RxD0BPfI5ZVgYX",
+      "amount": 2,
+      "status": "captured",
+      "method": "upi",
+      "created_at": "2025-12-28T23:13:14.000Z"
+    },
+    {
+      "id": "pay_RxCnEPgtZ1vxqD",
+      "amount": 1,
+      "status": "captured",
+      "method": "upi",
+      "created_at": "2025-12-28T23:00:59.000Z"
+    },
+    {
+      "id": "pay_RxCdXKbRoxXG14",
+      "amount": 1,
+      "status": "captured",
+      "method": "upi",
+      "created_at": "2025-12-28T22:51:48.000Z"
+    },
+    {
+      "id": "pay_RxBT589nq1ma2W",
+      "amount": 1,
+      "status": "failed",
+      "method": "upi",
+      "created_at": "2025-12-28T21:43:12.000Z"
+    },
+    {
+      "id": "pay_RxBQecNRAmHIeV",
+      "amount": 20,
+      "status": "captured",
+      "method": "upi",
+      "created_at": "2025-12-28T21:40:55.000Z"
+    }
+  ],
+  "generated_at": "2025-12-28T23:33:38.549Z"
+}
+
+  ├── /compare/day
+{
+  "today": {
+    "date": "2025-12-29",
+    "revenue": 24,
+    "transactions": 4
+  },
+  "yesterday": {
+    "date": "2025-12-28",
+    "revenue": 0,
+    "transactions": 0
+  },
+  "comparison": {
+    "revenue_change": "100%",
+    "revenue_diff": 24,
+    "transaction_diff": 4,
+    "trend": "up"
+  },
+  "currency": "INR",
+  "generated_at": "2025-12-28T23:35:40.401Z"
+}
+  ├── /growth
+{
+  "period": "Weekly (7 days)",
+  "current_period": {
+    "revenue": 24,
+    "transactions": 4
+  },
+  "previous_period": {
+    "revenue": 0,
+    "transactions": 0
+  },
+  "growth": {
+    "rate": "100%",
+    "revenue_diff": 24,
+    "transaction_diff": 4,
+    "trend": "growing"
+  },
+  "currency": "INR",
+  "generated_at": "2025-12-28T23:35:56.735Z"
+}
+
+  └── /heatmap/hour-day
+
+{"heatmap":{"Sunday":{"10":{"count":0,"revenue":0},"11":{"count":0,"revenue":0},"12":{"count":0,"revenue":0},"13":{"count":0,"revenue":0},"14":{"count":0,"revenue":0},"15":{"count":0,"revenue":0},"16":{"count":0,"revenue":0},"17":{"count":0,"revenue":0},"18":{"count":0,"revenue":0},"19":{"count":0,"revenue":0},"20":{"count":0,"revenue":0},"21":{"count":0,"revenue":0},"22":{"count":0,"revenue":0},"23":{"count":0,"revenue":0},"00":{"count":0,"revenue":0},"01":{"count":0,"revenue":0},"02":{"count":0,"revenue":0},"03":{"count":0,"revenue":0},"04":{"count":0,"revenue":0},"05":{"count":0,"revenue":0},"06":{"count":0,"revenue":0},"07":{"count":0,"revenue":0},"08":{"count":0,"revenue":0},"09":{"count":0,"revenue":0}},"Monday":{"10":{"count":0,"revenue":0},"11":{"count":0,"revenue":0},"12":{"count":0,"revenue":0},"13":{"count":0,"revenue":0},"14":{"count":0,"revenue":0},"15":{"count":0,"revenue":0},"16":{"count":0,"revenue":0},"17":{"count":0,"revenue":0},"18":{"count":0,"revenue":0},"19":{"count":0,"revenue":0},"20":{"count":0,"revenue":0},"21":{"count":0,"revenue":0},"22":{"count":0,"revenue":0},"23":{"count":0,"revenue":0},"00":{"count":0,"revenue":0},"01":{"count":0,"revenue":0},"02":{"count":0,"revenue":0},"03":{"count":1,"revenue":20},"04":{"count":3,"revenue":4},"05":{"count":0,"revenue":0},"06":{"count":0,"revenue":0},"07":{"count":0,"revenue":0},"08":{"count":0,"revenue":0},"09":{"count":0,"revenue":0}},"Tuesday":{"10":{"count":0,"revenue":0},"11":{"count":0,"revenue":0},"12":{"count":0,"revenue":0},"13":{"count":0,"revenue":0},"14":{"count":0,"revenue":0},"15":{"count":0,"revenue":0},"16":{"count":0,"revenue":0},"17":{"count":0,"revenue":0},"18":{"count":0,"revenue":0},"19":{"count":0,"revenue":0},"20":{"count":0,"revenue":0},"21":{"count":0,"revenue":0},"22":{"count":0,"revenue":0},"23":{"count":0,"revenue":0},"00":{"count":0,"revenue":0},"01":{"count":0,"revenue":0},"02":{"count":0,"revenue":0},"03":{"count":0,"revenue":0},"04":{"count":0,"revenue":0},"05":{"count":0,"revenue":0},"06":{"count":0,"revenue":0},"07":{"count":0,"revenue":0},"08":{"count":0,"revenue":0},"09":{"count":0,"revenue":0}},"Wednesday":{"10":{"count":0,"revenue":0},"11":{"count":0,"revenue":0},"12":{"count":0,"revenue":0},"13":{"count":0,"revenue":0},"14":{"count":0,"revenue":0},"15":{"count":0,"revenue":0},"16":{"count":0,"revenue":0},"17":{"count":0,"revenue":0},"18":{"count":0,"revenue":0},"19":{"count":0,"revenue":0},"20":{"count":0,"revenue":0},"21":{"count":0,"revenue":0},"22":{"count":0,"revenue":0},"23":{"count":0,"revenue":0},"00":{"count":0,"revenue":0},"01":{"count":0,"revenue":0},"02":{"count":0,"revenue":0},"03":{"count":0,"revenue":0},"04":{"count":0,"revenue":0},"05":{"count":0,"revenue":0},"06":{"count":0,"revenue":0},"07":{"count":0,"revenue":0},"08":{"count":0,"revenue":0},"09":{"count":0,"revenue":0}},"Thursday":{"10":{"count":0,"revenue":0},"11":{"count":0,"revenue":0},"12":{"count":0,"revenue":0},"13":{"count":0,"revenue":0},"14":{"count":0,"revenue":0},"15":{"count":0,"revenue":0},"16":{"count":0,"revenue":0},"17":{"count":0,"revenue":0},"18":{"count":0,"revenue":0},"19":{"count":0,"revenue":0},"20":{"count":0,"revenue":0},"21":{"count":0,"revenue":0},"22":{"count":0,"revenue":0},"23":{"count":0,"revenue":0},"00":{"count":0,"revenue":0},"01":{"count":0,"revenue":0},"02":{"count":0,"revenue":0},"03":{"count":0,"revenue":0},"04":{"count":0,"revenue":0},"05":{"count":0,"revenue":0},"06":{"count":0,"revenue":0},"07":{"count":0,"revenue":0},"08":{"count":0,"revenue":0},"09":{"count":0,"revenue":0}},"Friday":{"10":{"count":0,"revenue":0},"11":{"count":0,"revenue":0},"12":{"count":0,"revenue":0},"13":{"count":0,"revenue":0},"14":{"count":0,"revenue":0},"15":{"count":0,"revenue":0},"16":{"count":0,"revenue":0},"17":{"count":0,"revenue":0},"18":{"count":0,"revenue":0},"19":{"count":0,"revenue":0},"20":{"count":0,"revenue":0},"21":{"count":0,"revenue":0},"22":{"count":0,"revenue":0},"23":{"count":0,"revenue":0},"00":{"count":0,"revenue":0},"01":{"count":0,"revenue":0},"02":{"count":0,"revenue":0},"03":{"count":0,"revenue":0},"04":{"count":0,"revenue":0},"05":{"count":0,"revenue":0},"06":{"count":0,"revenue":0},"07":{"count":0,"revenue":0},"08":{"count":0,"revenue":0},"09":{"count":0,"revenue":0}},"Saturday":{"10":{"count":0,"revenue":0},"11":{"count":0,"revenue":0},"12":{"count":0,"revenue":0},"13":{"count":0,"revenue":0},"14":{"count":0,"revenue":0},"15":{"count":0,"revenue":0},"16":{"count":0,"revenue":0},"17":{"count":0,"revenue":0},"18":{"count":0,"revenue":0},"19":{"count":0,"revenue":0},"20":{"count":0,"revenue":0},"21":{"count":0,"revenue":0},"22":{"count":0,"revenue":0},"23":{"count":0,"revenue":0},"00":{"count":0,"revenue":0},"01":{"count":0,"revenue":0},"02":{"count":0,"revenue":0},"03":{"count":0,"revenue":0},"04":{"count":0,"revenue":0},"05":{"count":0,"revenue":0},"06":{"count":0,"revenue":0},"07":{"count":0,"revenue":0},"08":{"count":0,"revenue":0},"09":{"count":0,"revenue":0}}},"peak_slot":{"day":"Monday","hour":"04:00 - 5:00 IST","transactions":3,"revenue":4},"total_transactions":4,"generated_at":"2025-12-28T23:36:18.322Z"}
