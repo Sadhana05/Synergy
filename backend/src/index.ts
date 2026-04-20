@@ -26,7 +26,7 @@ const server = createServer(app);
 
 const PORT = Number(process.env.PORT || 3001);
 const JWT_SECRET = process.env.JWT_SECRET || "secret";
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "http://localhost:5173";
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "https://synergy-p9ni.vercel.app";
 const GROQ_BASE_URL = process.env.GROQ_BASE_URL || "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
 const DOCKER_TERMINAL_IMAGE = process.env.DOCKER_TERMINAL_IMAGE || "mcr.microsoft.com/devcontainers/universal:2";
@@ -1088,6 +1088,10 @@ app.get("/deployments/:deploymentId/", async (req: Request, res: Response) => {
 });
 
 app.use("/deployments", express.static(DEPLOYMENTS_ROOT, { index: ["index.html"] }));
+
+app.get("/", (_req, res) => {
+  res.json({ message: "backend api is running" });
+});
 
 app.get("/health", (_req, res) => {
   res.json({ status: "OK", time: nowIso(), db: "mongodb" });
