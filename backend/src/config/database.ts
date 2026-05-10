@@ -15,9 +15,12 @@ let db: Db | null = null;
 
 const getMongoClient = (uri: string): MongoClient => {
   const options: MongoClientOptions = {
-    serverSelectionTimeoutMS: 15000,
-    connectTimeoutMS: 10000,
-    socketTimeoutMS: 30000,
+    serverSelectionTimeoutMS: 30000, // Increased from 15000
+    connectTimeoutMS: 20000, // Increased from 10000
+    socketTimeoutMS: 45000, // Increased from 30000
+    maxPoolSize: 10,
+    minPoolSize: 2,
+    maxIdleTimeMS: 30000,
     ...(allowInsecureTlsInDev ? { tlsAllowInvalidCertificates: true, tlsInsecure: true } : {}),
     ...(forceIpv4 ? { family: 4 } : {}),
   };

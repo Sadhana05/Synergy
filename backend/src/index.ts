@@ -21,6 +21,28 @@ import { logger } from "./utils/logger";
 
 dotenv.config();
 
+// Handle unhandled promise rejections to prevent server crashes
+process.on('unhandledRejection', (reason, promise) => {
+  logger.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  // Don't exit the process, just log the error
+});
+
+process.on('uncaughtException', (error) => {
+  logger.error('Uncaught Exception:', error);
+  // Don't exit the process, just log the error
+});
+
+// Database health check
+const checkDatabaseHealth = async (): Promise<boolean> => {
+  try {
+    await getDb().admin().ping();
+    return true;
+  } catch (error) {
+    logger.error("Database health check failed", { error: error instanceof Error ? error.message : String(error) });
+    return false;
+  }
+};
+
 const app = express();
 const server = createServer(app);
 
@@ -833,27 +855,32 @@ const parseToken = (token: string): AuthPayload | null => {
 };
 
 const resolveWsAuth = async (workspaceId: string, token: string): Promise<AuthPayload | null> => {
-  const parsed = parseToken(token);
-  if (parsed) {
-    return parsed;
-  }
+  try {
+    const parsed = parseToken(token);
+    if (parsed) {
+      return parsed;
+    }
 
-  if (!WS_DEV_AUTH_BYPASS) {
-    return null;
-  }
+    if (!WS_DEV_AUTH_BYPASS) {
+      return null;
+    }
 
-  const workspace = await workspacesCollection().findOne({ id: workspaceId });
-  if (!workspace?.owner_id) {
-    return null;
-  }
+    const workspace = await workspacesCollection().findOne({ id: workspaceId });
+    if (!workspace?.owner_id) {
+      return null;
+    }
 
-  const owner = await usersCollection().findOne({ id: workspace.owner_id });
-  if (!owner) {
-    return null;
-  }
+    const owner = await usersCollection().findOne({ id: workspace.owner_id });
+    if (!owner) {
+      return null;
+    }
 
-  logger.info(`WS auth bypass active for workspace ${workspaceId}; using owner identity`);
-  return { userId: owner.id, email: owner.email };
+    logger.info(`WS auth bypass active for workspace ${workspaceId}; using owner identity`);
+    return { userId: owner.id, email: owner.email };
+  } catch (error) {
+    logger.error("Database error in resolveWsAuth", { workspaceId, error: error instanceof Error ? error.message : String(error) });
+    return null; // Return null on database errors to prevent crashes
+  }
 };
 
 const authenticateToken = (req: AuthRequest, res: Response, next: NextFunction): void => {
@@ -974,8 +1001,13 @@ const activityLog = async (
 };
 
 const getWorkspaceRole = async (workspaceId: string, userId: string): Promise<Role | null> => {
-  const member = await membersCollection().findOne({ workspace_id: workspaceId, user_id: userId });
-  return member?.role || null;
+  try {
+    const member = await membersCollection().findOne({ workspace_id: workspaceId, user_id: userId });
+    return member?.role || null;
+  } catch (error) {
+    logger.error("Database error in getWorkspaceRole", { workspaceId, userId, error: error instanceof Error ? error.message : String(error) });
+    return null; // Return null on database errors to prevent crashes
+  }
 };
 
 const requireWorkspaceRole = (minRole: Role) => {
@@ -1074,7 +1106,14 @@ const templates = [
 app.use(helmet());
 app.use(
   cors({
-    origin: [FRONTEND_ORIGIN, "http://localhost:3000", "http://localhost:5173"],
+    origin: [
+      FRONTEND_ORIGIN, 
+      "http://localhost:3000", 
+      "http://localhost:5173",
+      "http://127.0.0.1:5173",
+      /^http:\/\/192\.168\.\d+\.\d+:5173$/,
+      /^http:\/\/10\.\d+\.\d+\.\d+:5173$/
+    ],
     credentials: true,
   })
 );
@@ -2289,6 +2328,12 @@ const createRealtimeServers = (): void => {
     const workspaceId = url.searchParams.get("workspaceId") || "";
     void (async () => {
       try {
+        // Check database health before proceeding
+        if (!(await checkDatabaseHealth())) {
+          socket.close(1011, "Server temporarily unavailable");
+          return;
+        }
+
         if (!workspaceId) {
           socket.close(4001, "Unauthorized");
           return;
@@ -2427,6 +2472,12 @@ const createRealtimeServers = (): void => {
     const workspaceId = url.searchParams.get("workspaceId") || "";
     void (async () => {
       try {
+        // Check database health before proceeding
+        if (!(await checkDatabaseHealth())) {
+          socket.close(1011, "Server temporarily unavailable");
+          return;
+        }
+
         if (!workspaceId) {
           socket.close(4001, "Unauthorized");
           return;

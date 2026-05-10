@@ -250,7 +250,7 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
 
     const yDoc = new Y.Doc();
     const room = `workspace_presence_${workspace.id}`;
-    const provider = new WebsocketProvider(COLLAB_SERVER_URL, room, yDoc);
+    const provider = new WebsocketProvider(`${COLLAB_SERVER_URL}/${room}`, room, yDoc);
     const awareness = provider.awareness;
 
     presenceDocRef.current = yDoc;
